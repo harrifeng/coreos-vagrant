@@ -45,6 +45,11 @@ def vm_cpus
 end
 
 Vagrant.configure("2") do |config|
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http     = "http://proxy.sin.sap.corp:8080/"
+    config.proxy.https    = "http://proxy.sin.sap.corp:8080/"
+  end
+
   # always use Vagrants insecure key
   config.ssh.insert_key = false
 
