@@ -16,8 +16,8 @@ $image_version = "current"
 $enable_serial_logging = false
 $share_home = false
 $vm_gui = false
-$vm_memory = 1024
-$vm_cpus = 1
+$vm_memory = 8096
+$vm_cpus = 4
 $shared_folders = {}
 $forwarded_ports = {}
 
@@ -54,6 +54,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
 
   config.vm.box = "coreos-%s" % $update_channel
+  config.vm.network "forwarded_port", guest: 3000, host: 3456
   if $image_version != "current"
       config.vm.box_version = $image_version
   end
